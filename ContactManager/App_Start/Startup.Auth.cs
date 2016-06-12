@@ -60,8 +60,8 @@ namespace ContactManager
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "secret!",
-                ClientSecret = "secret!"
+                ClientId = AppSettings.GoogleClientId,
+                ClientSecret = AppSettings.GoogleClientSecret
             });
         }
     }

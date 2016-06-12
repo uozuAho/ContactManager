@@ -153,7 +153,7 @@ namespace ContactManager.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 // Only allow known emails
-                if (!user.Email.Equals("boob@blah.com"))
+                if (!IsAllowedEmail(user.Email))
                     ModelState.AddModelError("", "Access denied");
                 else
                 {
@@ -374,7 +374,7 @@ namespace ContactManager.Controllers
                     return View("ExternalLoginFailure");
                 }
                 // only allow known emails
-                if (!info.Email.Equals("boob@qwerty.com"))
+                if (!IsAllowedEmail(info.Email))
                     ModelState.AddModelError("", "Access denied");
                 else
                 {
@@ -491,6 +491,11 @@ namespace ContactManager.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
+        }
+
+        private static bool IsAllowedEmail(string email)
+        {
+            return AppSettings.AuthAllowedEmails.Contains(email);
         }
         #endregion
     }
