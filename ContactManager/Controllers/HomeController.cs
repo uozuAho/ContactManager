@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace ContactManager.Controllers
 {
@@ -13,18 +10,10 @@ namespace ContactManager.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
         [Authorize]
-        public ActionResult Contact()
+        public ActionResult ContactWithAuth()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.Message = "If you're seeing this, you're authorised. Congrats!";
             return View();
         }
     }
