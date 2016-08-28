@@ -2,7 +2,7 @@
 
 namespace ContactManager.Models
 {
-    public class Contact
+    public class Contact : BaseAuditEntity
     {
         public int ContactId { get; set; }
         public string Name { get; set; }
