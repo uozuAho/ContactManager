@@ -3,6 +3,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Linq;
+using System.Web;
+using System;
 
 namespace ContactManager.Models
 {
@@ -31,5 +34,39 @@ namespace ContactManager.Models
         }
 
         public System.Data.Entity.DbSet<ContactManager.Models.Contact> Contacts { get; set; }
+
+        public override int SaveChanges()
+        {
+            AddAuditData();
+            return base.SaveChanges();
+        }
+
+        public override async Task<int> SaveChangesAsync()
+        {
+            AddAuditData();
+            return await base.SaveChangesAsync();
+        }
+
+        private void AddAuditData()
+        {
+            var entities = ChangeTracker.Entries()
+                .Where(x => x.Entity is BaseAuditEntity && (x.State == EntityState.Added || x.State == EntityState.Modified));
+
+            var currentUsername = !string.IsNullOrEmpty(HttpContext.Current?.User?.Identity?.Name)
+                ? HttpContext.Current.User.Identity.Name
+                : "Anonymous";
+
+            foreach (var entity in entities)
+            {
+                if (entity.State == EntityState.Added)
+                {
+                    ((BaseAuditEntity)entity.Entity).CreatedUtc = DateTime.UtcNow;
+                    ((BaseAuditEntity)entity.Entity).UserCreated = currentUsername;
+                }
+
+                ((BaseAuditEntity)entity.Entity).ModifiedUtc = DateTime.UtcNow;
+                ((BaseAuditEntity)entity.Entity).UserModified = currentUsername;
+            }
+        }
     }
 }

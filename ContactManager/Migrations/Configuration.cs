@@ -1,6 +1,7 @@
 namespace ContactManager.Migrations
 {
     using Models;
+    using System;
     using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
