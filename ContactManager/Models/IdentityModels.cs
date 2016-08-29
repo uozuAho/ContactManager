@@ -63,6 +63,13 @@ namespace ContactManager.Models
                     ((BaseAuditEntity)entity.Entity).CreatedUtc = DateTime.UtcNow;
                     ((BaseAuditEntity)entity.Entity).UserCreated = currentUsername;
                 }
+                else
+                {
+                    // rather than require a viewmodel for every BaseAudit type, revert
+                    // created details so they are not updated with nulls in the modified entity
+                    entity.Property("CreatedUtc").IsModified = false;
+                    entity.Property("UserCreated").IsModified = false;
+                }
 
                 ((BaseAuditEntity)entity.Entity).ModifiedUtc = DateTime.UtcNow;
                 ((BaseAuditEntity)entity.Entity).UserModified = currentUsername;
