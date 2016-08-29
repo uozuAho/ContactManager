@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using ContactManager.Controllers;
+using System.Web.Mvc;
 
 namespace ContactManager
 {
@@ -6,7 +7,7 @@ namespace ContactManager
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new AiHandleErrorAttribute());
             filters.Add(new RequireHttpsAttribute());
         }
     }
