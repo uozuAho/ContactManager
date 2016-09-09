@@ -42,7 +42,7 @@ namespace ContactManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContactId,Name,Address,City,State,Zip,Email,DummyField")] Contact contact)
+        public ActionResult Create([Bind(Include = "ContactId,Name,Address,City,State,Zip,Email")] Contact contact)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace ContactManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContactId,Name,Address,City,State,Zip,Email,DummyField")] Contact contact)
+        public ActionResult Edit([Bind(Include = "ContactId,Name,Address,City,State,Zip,Email")] Contact contact)
         {
             if (ModelState.IsValid)
             {

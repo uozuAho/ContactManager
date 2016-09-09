@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201609091141034_DummyField.Designer.cs">
       <DependentUpon>201609091141034_DummyField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609091149592_RemDummyField.cs" />
+    <Compile Include="Migrations\201609091149592_RemDummyField.Designer.cs">
+      <DependentUpon>201609091149592_RemDummyField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseAuditEntity.cs" />
@@ -315,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609091141034_DummyField.resx">
       <DependentUpon>201609091141034_DummyField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609091149592_RemDummyField.resx">
+      <DependentUpon>201609091149592_RemDummyField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

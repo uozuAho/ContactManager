@@ -12,6 +12,5 @@ namespace ContactManager.Models
         public string Zip { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        public string DummyField { get; set; }
     }
 }
